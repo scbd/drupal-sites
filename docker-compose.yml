@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  drupal:
+    image: scbd/drupal:${DRUPAL_VERSION}
+    ports:
+    - "80:8000"
+    restart: always
+    volumes:
+    - drupal-themes:/opt/drupal/web/themes
+    - drupal-modules:/opt/drupal/web/modules
+    - drupal-sites:/opt/drupal/web/themes
+    - drupal-tmp:/opt/drupal/web/sites/_tmp
+    - certificates:/etc/letsencrypt
+    networks:
+    - drupal-net
+
+volumes:
+  drupal-themes:
+  drupal-modules:
+  drupal-sites:
+  drupal-tmp:
+  certificates:
+
+networks:
+  drupal-net:
